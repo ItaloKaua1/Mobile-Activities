@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:paddingTop="100dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome!"
+        android:textSize="@android:dimen/app_icon_size"
+        android:layout_marginBottom="32dp" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Name"
+        android:layout_marginBottom="32dp" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:layout_marginBottom="32dp" />
+
+    <Button
+        android:id="@+id/savebutton"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="Save"
+        android:text="Save"
+        android:textColor="#000000"
+        android:backgroundTint="#A4D31E"
+        android:layout_marginBottom="32dp" />
+
+</LinearLayout>
