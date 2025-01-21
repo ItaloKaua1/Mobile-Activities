@@ -1,6 +1,5 @@
 package com.example.apppost2.viewmodel
 
-import android.icu.text.CaseMap.Title
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -18,21 +17,21 @@ class PostViewModel: ViewModel() {
     var users: List<User> by mutableStateOf(listOf())
     private val userId = 1
 
-    fun fetchUsers() {
+    fun fetchUsers(){
         viewModelScope.launch {
             try {
                 users = RetrofitInstance.api.getUsers()
-            } catch (e: Exception) {
+            } catch (e: Exception){
                 e.printStackTrace()
             }
         }
     }
 
-    fun fetchPosts() {
+    fun fetchPosts(){
         viewModelScope.launch {
             try {
                 posts = RetrofitInstance.api.getPosts(userId)
-            } catch (e: Exception) {
+            } catch (e: Exception){
                 e.printStackTrace()
             }
         }
@@ -43,14 +42,14 @@ class PostViewModel: ViewModel() {
         email: String,
         onSuccess: () -> Unit,
         onError: () -> Unit
-    ) {
+    ){
         viewModelScope.launch {
             try {
                 val newUser = UserCreateRequest(name, email)
                 RetrofitInstance.api.createUser(newUser)
                 fetchUsers()
                 onSuccess()
-            } catch (e: Exception) {
+            } catch (e: Exception){
                 e.printStackTrace()
                 onError()
             }
@@ -69,9 +68,9 @@ class PostViewModel: ViewModel() {
                 RetrofitInstance.api.createPost(userId, newPost)
                 fetchPosts()
                 onSuccess()
-            } catch (e: Exception){
+            } catch (e:Exception){
                 e.printStackTrace()
-                onError()
+                onError
             }
         }
     }
@@ -81,7 +80,7 @@ class PostViewModel: ViewModel() {
             try {
                 RetrofitInstance.api.deletePost(postId)
                 fetchPosts()
-            } catch (e: Exception){
+            }catch (e:Exception){
                 e.printStackTrace()
             }
         }
@@ -97,7 +96,7 @@ class PostViewModel: ViewModel() {
                 val updatePost = CreatePostRequest(title, content)
                 RetrofitInstance.api.updatePost(postId, updatePost)
                 fetchPosts()
-            } catch (e: Exception){
+            }catch (e:Exception){
                 e.printStackTrace()
             }
         }

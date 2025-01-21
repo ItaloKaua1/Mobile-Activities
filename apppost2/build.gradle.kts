@@ -11,6 +11,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.45") // Adicione este classpath
+        classpath("com.android.tools.build:gradle:8.1.0") // Atualize para a versão do seu Gradle
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.45") // Plugin Hilt
     }
 }
