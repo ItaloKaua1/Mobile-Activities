@@ -1,4 +1,4 @@
-package com.example.msgapp.viewModel
+package com.example.msgapp.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,23 +9,23 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class MessageViewModel(private val repository: MessageRepository) : ViewModel() {
+class MessageViewModel(private val repository: MessageRepository): ViewModel() {
     private val _messages = MutableStateFlow<List<Message>>(emptyList())
-    val message: StateFlow<List<Message>> = _messages.asStateFlow()
+    val messages: StateFlow<List<Message>> = _messages.asStateFlow()
 
     init {
         viewModelScope.launch {
-            // o repositório coleta as mensagens e faz isso de forma reativa/ atualização automática
-            repository.allMessages.collect{ _messages.value = it }
+            repository.allMessages.collect{_messages.value = it}
         }
     }
 
     fun addMessage(content: String){
         viewModelScope.launch {
-            val newMessage = Message(content = content, timestamp = System.currentTimeMillis())
+            val newMessage = Message(content = content, timesTamp = System.currentTimeMillis())
+
             _messages.value += newMessage
+
             repository.addMessage(content)
         }
     }
-
 }

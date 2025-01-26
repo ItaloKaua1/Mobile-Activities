@@ -1,6 +1,7 @@
 package com.example.msgapp.ui.view
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,18 +36,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import com.example.msgapp.viewModel.MessageViewModel
-
+import com.example.msgapp.viewmodel.MessageViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MessageApp(viewModel: MessageViewModel) {
-    var messageText by remember { mutableStateOf(TextFieldValue()) }
-    val messages by viewModel.message.collectAsState(initial = emptyList())
-
+    var messageText by remember { mutableStateOf(TextFieldValue("")) }
+    val messages by viewModel.messages.collectAsState(initial = emptyList())
 
     val listState = rememberLazyListState()
 
@@ -59,24 +57,20 @@ fun MessageApp(viewModel: MessageViewModel) {
             TopAppBar(
                 title = {
                     Text(
-                        text = "MsgApp",
+                        text = "Chat",
                         style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.onPrimary
                     )
                 },
-                colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary
-                )
+                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
             )
-
-        }) { padding ->
+        }
+    ) { padding ->
         Column(
             modifier = Modifier
                 .padding(padding)
                 .fillMaxSize()
-                .background(
-                    MaterialTheme.colorScheme.background
-                )
+                .background(MaterialTheme.colorScheme.background)
         ) {
             LazyColumn(
                 modifier = Modifier
@@ -84,15 +78,14 @@ fun MessageApp(viewModel: MessageViewModel) {
                     .padding(8.dp),
                 state = listState
             ) {
-                items(messages.size) { index ->
+                items(messages.size){ index ->
                     val message = messages[index]
-                    MessageBublle(
+                    MessageBubble(
                         content = message.content,
                         isUserMessage = index % 2 == 0
                     )
                 }
             }
-
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -101,12 +94,17 @@ fun MessageApp(viewModel: MessageViewModel) {
             ) {
                 BasicTextField(
                     value = messageText,
-                    onValueChange = { messageText = it },
+                    onValueChange = {messageText = it},
                     modifier = Modifier
                         .weight(1f)
                         .background(
                             MaterialTheme.colorScheme.surface,
                             RoundedCornerShape(20.dp)
+                        )
+                        .border(
+                            width = 1.dp,
+                            color = MaterialTheme.colorScheme.primary,
+                            shape = RoundedCornerShape(20.dp)
                         )
                         .padding(horizontal = 16.dp, vertical = 12.dp),
                     singleLine = true,
@@ -114,63 +112,53 @@ fun MessageApp(viewModel: MessageViewModel) {
                         color = MaterialTheme.colorScheme.onSurface
                     )
                 )
-
                 Spacer(modifier = Modifier.width(8.dp))
-
                 IconButton(
                     onClick = {
-                        if (messageText.text.isNotBlank()) {
+                        if(messageText.text.isNotEmpty()){
                             viewModel.addMessage(messageText.text)
                             messageText = TextFieldValue("")
                         }
                     },
-                    modifier = Modifier
-                        .size(48.dp)
+                    modifier = Modifier.size(48.dp)
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.Send,
                         contentDescription = "Enviar",
-                        tint= MaterialTheme.colorScheme.primary
+                        tint = MaterialTheme.colorScheme.primary
                     )
                 }
             }
-
-
         }
-
     }
 }
 
 @Composable
-fun MessageBublle(content: String, isUserMessage: Boolean) {
+fun MessageBubble(content: String, isUserMessage: Boolean){
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = if (isUserMessage) Arrangement.End else Arrangement.Start
+        horizontalArrangement = if(isUserMessage) Arrangement.End else Arrangement.Start
     ) {
-        Box(
-            modifier = Modifier
-                .background(
-                    color = (if (isUserMessage) {
-                        MaterialTheme.colorScheme.primary
-                    } else {
-                        MaterialTheme.colorScheme.surface
-                    }) as Color,
-                    shape = RoundedCornerShape(16.dp)
-                )
-                .padding(12.dp)
-                .widthIn(max = 250.dp)
+        Box(modifier = Modifier.background(
+            color = if(isUserMessage) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface,
+            shape = RoundedCornerShape(16.dp)
+        )
+            .padding(12.dp)
+            .widthIn(max = 250.dp)
 
-        ) {
+
+        ){
             Text(
                 text = content,
                 style = MaterialTheme.typography.bodyMedium.copy(
-                    color = if (isUserMessage) {
+                    color = if(isUserMessage){
                         MaterialTheme.colorScheme.onPrimary
                     } else {
                         MaterialTheme.colorScheme.onSurface
                     }
+                ),
+
                 )
-            )
         }
     }
 }
