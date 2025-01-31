@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1034288407184",
+    "firebase_url": "https://invet-projt-2-default-rtdb.firebaseio.com",
+    "project_id": "invet-projt-2",
+    "storage_bucket": "invet-projt-2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034288407184:android:f529ef8502a23a970c6e15",
+        "android_client_info": {
+          "package_name": "com.example.investidor2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlUd4coIXSP6WfP5njqup35LtQy2zAO0I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
