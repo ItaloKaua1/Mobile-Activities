@@ -9,7 +9,19 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+
+object AppColors {
+    val primary = Color(0xFF1E88E5)       // Azul médio
+    val onPrimary = Color.White           // Branco para contraste com azul
+    val secondary = Color(0xFF43A047)     // Verde médio
+    val onSecondary = Color.White         // Branco para contraste com verde
+    val surface = Color(0xFFFFFFFF)       // Branco puro para superfícies
+    val onSurface = Color(0xFF000000)     // Preto para texto em superfícies claras
+    val background = Color(0xFFF3F4F6)    // Cinza claro para fundo
+    val onBackground = Color(0xFF1B1B1B)  // Preto suave para texto em fundo claro
+}
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
