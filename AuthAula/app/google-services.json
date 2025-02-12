@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "858121640578",
+    "project_id": "authativmob",
+    "storage_bucket": "authativmob.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858121640578:android:ec52b780fc824ba19bf29b",
+        "android_client_info": {
+          "package_name": "com.example.authaula"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858121640578-o6lre9u760rd3d40tagk77bepefirnlc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.authaula",
+            "certificate_hash": "6e7925f9e476d1921a83191378bffccd3a4b37ce"
+          }
+        },
+        {
+          "client_id": "858121640578-t1opch91s3cftkjsfaivuvf2pg20hmnj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWGJRQL6DKhXWyJIxDrhQtWuaqKe-FTeQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858121640578-t1opch91s3cftkjsfaivuvf2pg20hmnj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
